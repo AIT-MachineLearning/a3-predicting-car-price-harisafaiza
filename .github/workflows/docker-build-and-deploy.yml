@@ -49,6 +49,7 @@ jobs:
           REMOTE_USER: st125053
           REMOTE_HOST: ml.brain.cs.ait.ac.th
           CONTAINER_NAME: streamlit_app
+          REMOTE_HOST_PASSWORD: ${{ secrets.REMOTE_HOST_PASSWORD }}
         run: |
           # Create SSH key file
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > $HOME/temporary_key
@@ -73,6 +74,9 @@ jobs:
 
           # Ensure the SSH config has proper permissions
           chmod 600 $HOME/.ssh/config
+
+          # Deploy the application to the final remote host
+          sshpass -p '${{ secrets.REMOTE_HOST_PASSWORD }}' ssh -tt -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << 'EOF'
 
           # Deploy the application to the final remote host
           sshpass -p '${{ secrets.INTERMEDIATE_HOST_PASSWORD }}' ssh -tt -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << 'EOF'

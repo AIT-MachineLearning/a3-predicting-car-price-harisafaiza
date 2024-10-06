@@ -73,5 +73,5 @@ def main():
         st.success(f"Predicted Selling Price Category: {category}")
         st.success(f"Estimated Selling Price Range: ₹{price_range[0]:,.2f} - ₹{price_range[1]:,.2f}")
 
-if __name__ == "_main_":
+if _name_ == "_main_":
     main()

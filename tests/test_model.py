@@ -49,5 +49,5 @@ def main():
     
     print(f"The predicted selling price for the sample input is approximately ₹{predicted_price:,.2f}")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
